@@ -10,17 +10,18 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class SeasonService {
+public class SeasonServiceImpl implements SeasonService{
 
     private final SeasonRepository seasonRepository;
 
+    @Override
     public Season createSeason(SeasonRecord seasonRecord) {
         Farm farm = Farm.builder()
                 .id(seasonRecord.farmId())
                 .build();
 
         Season season = Season.builder()
-                .year(seasonRecord.year())
+                .seasonYear(seasonRecord.year())
                 .name(seasonRecord.name())
                 .farm(farm)
                 .build();
@@ -28,24 +29,27 @@ public class SeasonService {
         return seasonRepository.save(season);
     }
 
+    @Override
     public Season getSeason(Long seasonId) {
         return seasonRepository.findById(seasonId)
                 .orElseThrow(() -> new NotFoundException("Season not found with id: " + seasonId));
     }
 
+    @Override
     public Season updateSeason(Long seasonId, SeasonRecord seasonRecord) {
         Farm farm = Farm.builder()
                 .id(seasonRecord.farmId())
                 .build();
 
         Season season = getSeason(seasonId);
-        season.setYear(seasonRecord.year());
+        season.setSeasonYear(seasonRecord.year());
         season.setName(seasonRecord.name());
         season.setFarm(farm);
 
         return seasonRepository.save(season);
     }
 
+    @Override
     public void deleteSeason(Long seasonId) {
         Season season = getSeason(seasonId);
         seasonRepository.delete(season);

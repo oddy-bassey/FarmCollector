@@ -1,5 +1,4 @@
 package com.example.farmcollector.model.dto;
 
-public record FarmRecord(
-        Long fieldId,
-        Double actualProduct) {}
+public record FieldRecord(String cropType, double plantingArea, double expectedProduct, Long seasonId) {}
+

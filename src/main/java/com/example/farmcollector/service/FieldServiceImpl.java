@@ -10,10 +10,11 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class FieldService {
+public class FieldServiceImpl implements FieldService{
 
     private FieldRepository fieldRepository;
 
+    @Override
     public Field createField(FieldRecord fieldRecord) {
         Season season = Season.builder()
                 .id(fieldRecord.seasonId())
@@ -29,11 +30,13 @@ public class FieldService {
         return fieldRepository.save(field);
     }
 
+    @Override
     public Field getField(Long fieldId) {
         return fieldRepository.findById(fieldId)
                 .orElseThrow(() -> new NotFoundException("Field not found with id: " + fieldId));
     }
 
+    @Override
     public Field updateField(Long fieldId, FieldRecord fieldRecord) {
         Field field = getField(fieldId);
         field.setCropType(fieldRecord.cropType());
@@ -46,6 +49,7 @@ public class FieldService {
         return fieldRepository.save(field);
     }
 
+    @Override
     public void deleteField(Long fieldId) {
         Field field = getField(fieldId);
         fieldRepository.delete(field);
