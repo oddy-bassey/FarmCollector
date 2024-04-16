@@ -1,5 +1,7 @@
 package com.example.farmcollector.model.dto;
 
 public record HarvestingRequest (
-        Long fieldId,
-        Double actualProduct) {}
+        Long farmId,
+        Long seasonId,
+        Double actualProduct
+) {}
