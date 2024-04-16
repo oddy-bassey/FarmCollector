@@ -9,7 +9,7 @@ public interface FieldRepository extends JpaRepository<Field, Long> {
 
     Field findBySeasonId(Long season_id);
 
-    List<Field> findByFarmId(Long farmId);
+    List<Field> findBySeasonFarmId(Long farmId);
 
     List<Field> findByCropType(String cropType);
 }

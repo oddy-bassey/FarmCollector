@@ -16,7 +16,7 @@ public class ReportServiceImpl implements ReportService {
     private final FieldRepository fieldRepository;
     @Override
     public Map<String, Double> getExpectedVsActualProductForFarm(Long farmId) {
-        List<Field> fields = fieldRepository.findByFarmId(farmId);
+        List<Field> fields = fieldRepository.findBySeasonFarmId(farmId);
 
         return fields.stream()
                 .collect(Collectors.groupingBy(Field::getCropType,
