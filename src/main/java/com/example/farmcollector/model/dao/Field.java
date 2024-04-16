@@ -14,13 +14,13 @@ public class Field {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    private Double plantingArea;
-    private String cropType;
-    private Double expectedProduct;
-    private Double actualProduct;
-    private String season;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "farm_id")
-    private Farm farm;
+    private String cropType;
+    private double plantingArea;
+    private double expectedProduct;
+    private double actualProduct;
+
+    @ManyToOne
+    @JoinColumn(name = "season_id")
+    private Season season;
 }

@@ -5,16 +5,19 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-public class Farm {
-
+public class Season {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
+    private int year;
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "farm_id")
+    private Farm farm;
 }

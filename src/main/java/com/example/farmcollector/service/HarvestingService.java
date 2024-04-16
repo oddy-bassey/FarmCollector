@@ -1,4 +1,7 @@
 package com.example.farmcollector.service;
 
-public interface PlantingService {
+import com.example.farmcollector.model.dto.HarvestingRequest;
+
+public interface HarvestingService {
+    void submitHarvestingData(HarvestingRequest request);
 }
