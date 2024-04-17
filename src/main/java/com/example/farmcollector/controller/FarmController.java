@@ -5,38 +5,33 @@ import com.example.farmcollector.model.dto.PlantingRequest;
 import com.example.farmcollector.service.FieldService;
 import com.example.farmcollector.service.SeasonService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/farm")
+@RequestMapping("/api/farms")
 public class FarmController {
 
-    private final FieldService fieldService;
+    @Autowired
+    private PlantingService plantingService;
 
-    private final SeasonService seasonService;
+    @Autowired
+    private HarvestService harvestService;
 
-    // API to add planting information
-    @PostMapping("/plant")
-    public ResponseEntity<String> addPlantingInfo(@RequestBody PlantingRequest request) {
-        try {
-            fieldService.addPlantingInfo(request);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Planting information added successfully");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to add planting information");
-        }
+    // Endpoint to receive planting data
+    @PostMapping("/{farmId}/plantings")
+    public ResponseEntity<String> addPlantingData(@PathVariable Long farmId, @RequestBody PlantingRequest plantingRequest) {
+        plantingService.addPlantingData(farmId, plantingRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Planting data added successfully.");
     }
 
-    // API to add harvesting information
-    @PostMapping("/harvest")
-    public ResponseEntity<String> addHarvestingInfo(@RequestBody HarvestingRequest request) {
-        try {
-            fieldService.addHarvestingInfo(request);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Harvesting information added successfully");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to add harvesting information");
-        }
+    // Endpoint to receive harvesting data
+    @PostMapping("/{farmId}/harvests")
+    public ResponseEntity<String> addHarvestData(@PathVariable Long farmId, @RequestBody HarvestRequest harvestRequest) {
+        harvestService.addHarvestData(farmId, harvestRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Harvest data added successfully.");
     }
 }

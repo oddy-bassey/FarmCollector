@@ -39,3 +39,29 @@ Represents the harvested product data for a specific planting activity. Each har
 
 - JUnit5
 - Mockito
+
+## Endpoints
+
+### Add Planting Data
+```
+POST /api/farms/{farmId}/plantings
+Request Body:
+{
+    "fieldId": 1,
+    "seasonId": 1,
+    "cropTypeId": 1,
+    "expectedProductAmount": 100.0
+}
+```
+Adds planting data for a specific field in a farm.
+
+### Add Harvest Data
+```
+POST /api/farms/{farmId}/harvests
+Request Body:
+{
+    "plantingId": 1,
+    "actualHarvestedAmount": 80.0
+}
+```
+Adds harvesting data for a specific planting.

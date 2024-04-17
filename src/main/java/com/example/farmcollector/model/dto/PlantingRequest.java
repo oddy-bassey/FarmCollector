@@ -1,8 +1,8 @@
 package com.example.farmcollector.model.dto;
 
-public record PlantingRequest (
-        Long farmId,
+public record PlantingRequest(
+        Long fieldId,
         Long seasonId,
-        String cropType,
-        Double plantingArea,
-        Double expectedProduct) {}
+        Long cropTypeId,
+        double expectedProductAmount
+) {}
