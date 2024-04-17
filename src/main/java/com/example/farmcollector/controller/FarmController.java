@@ -1,11 +1,7 @@
 package com.example.farmcollector.controller;
 
-import com.example.farmcollector.model.dto.HarvestingRequest;
-import com.example.farmcollector.model.dto.PlantingRequest;
-import com.example.farmcollector.service.FieldService;
-import com.example.farmcollector.service.HarvestService;
-import com.example.farmcollector.service.PlantingService;
-import com.example.farmcollector.service.SeasonService;
+import com.example.farmcollector.model.dto.*;
+import com.example.farmcollector.service.FarmService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,22 +14,19 @@ import org.springframework.web.bind.annotation.*;
 public class FarmController {
 
     @Autowired
-    private PlantingService plantingService;
-
-    @Autowired
-    private HarvestService harvestService;
+    private FarmService farmService;
 
     // Endpoint to receive planting data
     @PostMapping("/{farmId}/plantings")
     public ResponseEntity<String> addPlantingData(@PathVariable Long farmId, @RequestBody PlantingRequest plantingRequest) {
-        plantingService.addPlantingData(farmId, plantingRequest);
+        farmService.addPlantingData(farmId, plantingRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body("Planting data added successfully.");
     }
 
     // Endpoint to receive harvesting data
     @PostMapping("/{farmId}/harvests")
     public ResponseEntity<String> addHarvestData(@PathVariable Long farmId, @RequestBody HarvestRequest harvestRequest) {
-        harvestService.addHarvestData(farmId, harvestRequest);
+        farmService.addHarvestData(farmId, harvestRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body("Harvest data added successfully.");
     }
 }
