@@ -64,6 +64,11 @@ Request Body:
 ```
 Adds harvesting data for a specific planting.
 
+### Generate Report
+```
+GET /api/reports/generate
+```
+
 ---
 ## Farm Service Implementation
 ### Planting Implementation (addPlantingData)

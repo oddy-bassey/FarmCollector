@@ -15,11 +15,11 @@ import java.util.stream.Collectors;
 @Service
 public class ReportServiceImpl implements ReportService {
 
-    private final PlantingRepository plantingRepository;
+    private PlantingRepository plantingRepository;
 
-    private final HarvestRepository harvestRepository;
+    private HarvestRepository harvestRepository;
 
-    public Map<String, Map<String, Map<String, Double>>> generateReport()  {
+    public Map<String, Map<String, Map<String, Double>>> generateReport() {
         // Retrieve all plantings
         List<Planting> plantings = plantingRepository.findAll();
 
