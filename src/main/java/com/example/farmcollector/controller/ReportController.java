@@ -4,7 +4,6 @@ import com.example.farmcollector.service.ReportService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,15 +16,9 @@ public class ReportController {
 
     private final ReportService reportService;
 
-    @GetMapping("/farm/{farmId}")
-    public ResponseEntity<Map<String, Double>> getFarmReport(@PathVariable Long farmId) {
-        Map<String, Double> report = reportService.getExpectedVsActualProductForFarm(farmId);
-        return ResponseEntity.ok(report);
-    }
-
-    @GetMapping("/crop/{cropType}")
-    public ResponseEntity<Map<String, Double>> getCropReport(@PathVariable String cropType) {
-        Map<String, Double> report = reportService.getExpectedVsActualProductForCropType(cropType);
+    @GetMapping("/generate")
+    public ResponseEntity<Map<String, Map<String, Map<String, Double>>>> generateReport() {
+        Map<String, Map<String, Map<String, Double>>> report = reportService.generateReport();
         return ResponseEntity.ok(report);
     }
 }

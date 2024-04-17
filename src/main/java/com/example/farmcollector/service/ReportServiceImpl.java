@@ -1,7 +1,11 @@
 package com.example.farmcollector.service;
 
 import com.example.farmcollector.model.dao.Field;
+import com.example.farmcollector.model.dao.Harvest;
+import com.example.farmcollector.model.dao.Planting;
 import com.example.farmcollector.repository.FieldRepository;
+import com.example.farmcollector.repository.HarvestRepository;
+import com.example.farmcollector.repository.PlantingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,22 +17,40 @@ import java.util.stream.Collectors;
 @Service
 public class ReportServiceImpl implements ReportService {
 
-    private final FieldRepository fieldRepository;
-    @Override
-    public Map<String, Double> getExpectedVsActualProductForFarm(Long farmId) {
-        List<Field> fields = fieldRepository.findBySeasonFarmId(farmId);
+    private PlantingRepository plantingRepository;
 
-        return fields.stream()
-                .collect(Collectors.groupingBy(Field::getCropType,
-                        Collectors.summingDouble(Field::getExpectedProduct)));
-    }
+    private HarvestRepository harvestRepository;
 
-    @Override
-    public Map<String, Double> getExpectedVsActualProductForCropType(String cropType) {
-        List<Field> fields = fieldRepository.findByCropType(cropType);
+    public Map<String, Map<String, Map<String, Double>>> generateReport() {
+        // Retrieve all plantings
+        List<Planting> plantings = plantingRepository.findAll();
 
-        return fields.stream()
-                .collect(Collectors.groupingBy(Field::getCropType,
-                        Collectors.summingDouble(Field::getExpectedProduct)));
+        // Retrieve all harvests
+        List<Harvest> harvests = harvestRepository.findAll();
+
+        // Calculate expected and actual amounts of product for each farm, crop type, and season
+        Map<String, Map<String, Map<String, Double>>> report = plantings.stream()
+                .collect(Collectors.groupingBy(
+                        planting -> planting.getField().getFarm().getName(),
+                        Collectors.groupingBy(
+                                planting -> planting.getCropType().getName(),
+                                Collectors.groupingBy(
+                                        planting -> planting.getSeason().getName(),
+                                        Collectors.summingDouble(Planting::getExpectedProductAmount)
+                                )
+                        )
+                ));
+
+        for (Harvest harvest : harvests) {
+            String farmName = harvest.getPlanting().getField().getFarm().getName();
+            String cropTypeName = harvest.getPlanting().getCropType().getName();
+            String seasonName = harvest.getPlanting().getSeason().getName();
+            double actualHarvestedAmount = harvest.getActualHarvestedAmount();
+            report.get(farmName)
+                    .get(cropTypeName)
+                    .merge(seasonName, actualHarvestedAmount, Double::sum);
+        }
+
+        return report;
     }
 }
