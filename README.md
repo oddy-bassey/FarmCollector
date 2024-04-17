@@ -108,3 +108,9 @@ GET /api/reports/generate
   - The report displays the expected vs actual amounts of product for each farm, crop type, and season.
 
 ---
+## Tests Coverage
+
+The following tests classes were implemented to provide some basic tests coverage:
+
+  - FarmServiceImplUnitTest
+    ![FarmServiceImplUnitTest](src/main/docs/farmservice-unit-test.png)
