@@ -1,9 +1,7 @@
 package com.example.farmcollector.service;
 
-import com.example.farmcollector.model.dao.Field;
 import com.example.farmcollector.model.dao.Harvest;
 import com.example.farmcollector.model.dao.Planting;
-import com.example.farmcollector.repository.FieldRepository;
 import com.example.farmcollector.repository.HarvestRepository;
 import com.example.farmcollector.repository.PlantingRepository;
 import lombok.RequiredArgsConstructor;
