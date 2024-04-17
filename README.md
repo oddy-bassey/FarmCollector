@@ -65,7 +65,12 @@ Request Body:
 Adds harvesting data for a specific planting.
 
 ---
-## Planting Implementation
+<<<<<<< HEAD
+## Farm Service Implementation
+### Planting Implementation (addPlantingData)
+=======
+## Planting Service Implementation
+>>>>>>> parent of bdeb4d1 (implemented add harvest data)
 
 - **Validation Checks**:
     - The service checks if the specified farm and field exist and if the field is associated with the farm.
@@ -75,12 +80,31 @@ Adds harvesting data for a specific planting.
     - It is assumed that each planting involves only one crop type and one field.
     - Each planting is associated with a specific season.
 
-## Harvest Implementation
+<<<<<<< HEAD
+## Harvest Implementation (addHarvestData)
 
 - **Validation Checks**:
     - The service checks if the specified planting exists and is associated with the specified farm.
 - **Assumptions**:
     - It is assumed that each harvest is associated with a specific planting.
     - Each harvest represents the actual harvested amount for a planting.
+    - A possible scenario which wasn't implemented is that a harvest cannot be more than the planted amount. This is only valid if the expected amount refers to the number planted.
+      ```
+        double actualHarvestedAmount = harvestRequest.actualHarvestedAmount();
+        double expectedProductAmount = planting.getExpectedProductAmount();
+        if (actualHarvestedAmount > expectedProductAmount) {
+            throw new HarvestAmountExceedsPlantedAmountException("The harvested amount cannot exceed the planted " +
+                    "amount/expected produce amount for planting with id " + plantingId);
+        }
+      ```
+
+## Report Implementation
+
+- **Calculation of Expected vs Actual Amounts**:
+  - The report service calculates the expected and actual amounts of product for each farm, crop type, and season based on the provided planting and harvesting data.
+- **Assumptions**:
+  - It is assumed that each planting represents the expected amount of product for a specific crop in a field during a season.
+  - Each harvest represents the actual amount of harvested product for a specific planting.
+  - The report displays the expected vs actual amounts of product for each farm, crop type, and season.
 
 ---

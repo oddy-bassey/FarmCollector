@@ -4,7 +4,5 @@ import java.util.Map;
 
 public interface ReportService {
 
-    Map<String, Double> getExpectedVsActualProductForFarm(Long farmId);
-
-    Map<String, Double> getExpectedVsActualProductForCropType(String cropType);
+    Map<String, Map<String, Map<String, Double>>> generateReport() ;
 }

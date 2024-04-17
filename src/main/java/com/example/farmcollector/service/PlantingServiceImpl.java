@@ -2,7 +2,6 @@ package com.example.farmcollector.service;
 
 import com.example.farmcollector.exception.*;
 import com.example.farmcollector.model.dao.*;
-import com.example.farmcollector.model.dto.HarvestRequest;
 import com.example.farmcollector.model.dto.PlantingRequest;
 import com.example.farmcollector.repository.*;
 import lombok.RequiredArgsConstructor;
@@ -12,14 +11,13 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
-public class FarmServiceImpl implements FarmService {
+public class PlantingServiceImpl implements PlantingService {
 
     private final FarmRepository farmRepository;
     private final FieldRepository fieldRepository;
     private final CropTypeRepository cropTypeRepository;
     private final PlantingRepository plantingRepository;
     private final SeasonRepository seasonRepository;
-    private final HarvestRepository harvestRepository;
 
     @Override
     public void addPlantingData(Long farmId, PlantingRequest plantingRequest) {
@@ -63,6 +61,7 @@ public class FarmServiceImpl implements FarmService {
                 .build();
         plantingRepository.save(planting);
     }
+<<<<<<< HEAD:src/main/java/com/example/farmcollector/service/FarmServiceImpl.java
 
     @Override
     public void addHarvestData(Long farmId, HarvestRequest harvestRequest) {
@@ -76,6 +75,16 @@ public class FarmServiceImpl implements FarmService {
             throw new PlantingNotAssociatedWithFarmException("Planting with id " + plantingId + " is not associated with farm " + farmId);
         }
 
+        // Check if harvested amount exceeds planted amount
+        /*
+        double actualHarvestedAmount = harvestRequest.actualHarvestedAmount();
+        double expectedProductAmount = planting.getExpectedProductAmount();
+        if (actualHarvestedAmount > expectedProductAmount) {
+            throw new HarvestAmountExceedsPlantedAmountException("The harvested amount cannot exceed the planted " +
+                    "amount/expected produce amount for planting with id " + plantingId);
+        }
+        */
+
         // All checks passed, proceed with adding harvest data
         Harvest harvest = Harvest.builder()
                 .planting(planting)
@@ -83,4 +92,6 @@ public class FarmServiceImpl implements FarmService {
                 .build();
         harvestRepository.save(harvest);
     }
+=======
+>>>>>>> parent of bdeb4d1 (implemented add harvest data):src/main/java/com/example/farmcollector/service/PlantingServiceImpl.java
 }
