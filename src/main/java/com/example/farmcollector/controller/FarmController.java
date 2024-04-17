@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/farms")
 public class FarmController {
 
-    @Autowired
-    private FarmService farmService;
+    private final FarmService farmService;
 
     // Endpoint to receive planting data
     @PostMapping("/{farmId}/plantings")
