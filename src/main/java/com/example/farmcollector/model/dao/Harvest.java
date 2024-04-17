@@ -6,18 +6,19 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-public class Season {
+public class Harvest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private Date startDate;
-    private Date endDate;
+
+    @ManyToOne
+    @JoinColumn(name = "planting_id")
+    private Planting planting;
+
+    private double actualHarvestedAmount;
 }

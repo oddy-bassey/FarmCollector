@@ -17,12 +17,9 @@ public class Field {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String cropType;
-    private double plantingArea;
-    private double expectedProduct;
-    private double actualProduct;
-
     @ManyToOne
-    @JoinColumn(name = "season_id")
-    private Season season;
+    @JoinColumn(name = "farm_id")
+    private Farm farm;
+
+    private double plantingArea;
 }
