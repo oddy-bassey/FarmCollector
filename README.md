@@ -113,4 +113,6 @@ GET /api/reports/generate
 The following tests classes were implemented to provide some basic tests coverage:
 
   - FarmServiceImplUnitTest
-    ![FarmServiceImplUnitTest](src/main/docs/farmservice-unit-test.png)
+    ![Farm Service Unit Test](src/main/docs/farmservice-unit-test.png)
+  - FarmControllerUnitTest
+    ![Farm Controller Unit Test](src/main/docs/farmcontroller-unit-test.png)
