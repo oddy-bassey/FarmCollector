@@ -3,6 +3,8 @@ package com.example.farmcollector.controller;
 import com.example.farmcollector.model.dto.HarvestingRequest;
 import com.example.farmcollector.model.dto.PlantingRequest;
 import com.example.farmcollector.service.FieldService;
+import com.example.farmcollector.service.HarvestService;
+import com.example.farmcollector.service.PlantingService;
 import com.example.farmcollector.service.SeasonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

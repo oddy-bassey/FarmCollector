@@ -29,19 +29,17 @@ Represents the harvested product data for a specific planting activity. Each har
 - **Flexibility**: By associating plantings with both a field and a specific season, the system accommodates complex planting scenarios such as multi-cropping and staggered planting within the same field.
 
 ## Technologies Used
-
 - Java
 - Spring Boot
 - Spring Data JPA
 - H2 Database (for demo purposes, can be replaced with other databases)
-- 
-## Testing
 
+## Testing
 - JUnit5
 - Mockito
 
+---
 ## Endpoints
-
 ### Add Planting Data
 ```
 POST /api/farms/{farmId}/plantings
@@ -65,3 +63,16 @@ Request Body:
 }
 ```
 Adds harvesting data for a specific planting.
+
+---
+## Planting Service Implementation
+
+- **Validation Checks**:
+    - The service checks if the specified farm and field exist and if the field is associated with the farm.
+    - It verifies the existence of the crop type and season.
+    - It ensures that a crop can only be planted once on a field in any season.
+- **Assumptions**:
+    - It is assumed that each planting involves only one crop type and one field.
+    - Each planting is associated with a specific season.
+
+---

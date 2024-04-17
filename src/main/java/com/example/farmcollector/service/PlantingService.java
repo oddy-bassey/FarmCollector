@@ -4,5 +4,5 @@ import com.example.farmcollector.model.dto.PlantingRequest;
 
 public interface PlantingService {
 
-    void submitPlantingData(PlantingRequest request);
+    void addPlantingData(Long farmId, PlantingRequest plantingRequest);
 }
