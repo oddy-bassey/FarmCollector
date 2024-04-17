@@ -65,12 +65,8 @@ Request Body:
 Adds harvesting data for a specific planting.
 
 ---
-<<<<<<< HEAD
 ## Farm Service Implementation
 ### Planting Implementation (addPlantingData)
-=======
-## Planting Service Implementation
->>>>>>> parent of bdeb4d1 (implemented add harvest data)
 
 - **Validation Checks**:
     - The service checks if the specified farm and field exist and if the field is associated with the farm.
@@ -80,8 +76,7 @@ Adds harvesting data for a specific planting.
     - It is assumed that each planting involves only one crop type and one field.
     - Each planting is associated with a specific season.
 
-<<<<<<< HEAD
-## Harvest Implementation (addHarvestData)
+### Harvest Implementation (addHarvestData)
 
 - **Validation Checks**:
     - The service checks if the specified planting exists and is associated with the specified farm.
@@ -98,7 +93,7 @@ Adds harvesting data for a specific planting.
         }
       ```
 
-## Report Implementation
+## Report Service Implementation
 
 - **Calculation of Expected vs Actual Amounts**:
   - The report service calculates the expected and actual amounts of product for each farm, crop type, and season based on the provided planting and harvesting data.
