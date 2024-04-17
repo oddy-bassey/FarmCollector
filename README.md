@@ -65,7 +65,7 @@ Request Body:
 Adds harvesting data for a specific planting.
 
 ---
-## Planting Service Implementation
+## Planting Implementation
 
 - **Validation Checks**:
     - The service checks if the specified farm and field exist and if the field is associated with the farm.
@@ -74,5 +74,13 @@ Adds harvesting data for a specific planting.
 - **Assumptions**:
     - It is assumed that each planting involves only one crop type and one field.
     - Each planting is associated with a specific season.
+
+## Harvest Implementation
+
+- **Validation Checks**:
+    - The service checks if the specified planting exists and is associated with the specified farm.
+- **Assumptions**:
+    - It is assumed that each harvest is associated with a specific planting.
+    - Each harvest represents the actual harvested amount for a planting.
 
 ---

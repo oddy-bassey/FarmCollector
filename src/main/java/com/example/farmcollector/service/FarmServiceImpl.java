@@ -2,6 +2,7 @@ package com.example.farmcollector.service;
 
 import com.example.farmcollector.exception.*;
 import com.example.farmcollector.model.dao.*;
+import com.example.farmcollector.model.dto.HarvestRequest;
 import com.example.farmcollector.model.dto.PlantingRequest;
 import com.example.farmcollector.repository.*;
 import lombok.RequiredArgsConstructor;
@@ -11,13 +12,14 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
-public class PlantingServiceImpl implements PlantingService {
+public class FarmServiceImpl implements FarmService {
 
     private final FarmRepository farmRepository;
     private final FieldRepository fieldRepository;
     private final CropTypeRepository cropTypeRepository;
     private final PlantingRepository plantingRepository;
     private final SeasonRepository seasonRepository;
+    private final HarvestRepository harvestRepository;
 
     @Override
     public void addPlantingData(Long farmId, PlantingRequest plantingRequest) {
@@ -60,5 +62,25 @@ public class PlantingServiceImpl implements PlantingService {
                 .expectedProductAmount(plantingRequest.expectedProductAmount())
                 .build();
         plantingRepository.save(planting);
+    }
+
+    @Override
+    public void addHarvestData(Long farmId, HarvestRequest harvestRequest) {
+        // Check if planting exists
+        Long plantingId = harvestRequest.plantingId();
+        Planting planting = plantingRepository.findById(plantingId)
+                .orElseThrow(() -> new PlantingNotFoundException("Planting with id " + plantingId + " not found."));
+
+        // Check if the planting is associated with the specified farm
+        if (!planting.getField().getFarm().getId().equals(farmId)) {
+            throw new PlantingNotAssociatedWithFarmException("Planting with id " + plantingId + " is not associated with farm " + farmId);
+        }
+
+        // All checks passed, proceed with adding harvest data
+        Harvest harvest = Harvest.builder()
+                .planting(planting)
+                .actualHarvestedAmount(harvestRequest.actualHarvestedAmount())
+                .build();
+        harvestRepository.save(harvest);
     }
 }
