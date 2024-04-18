@@ -64,7 +64,7 @@ This layout provides a clear visual representation of the entities in the Farm M
 ## Endpoints
 ### Add Planting Data
 ```
-POST /api/farms/{farmId}/plantings
+POST /api/v1/farms/{farmId}/plantings
 Request Body:
 {
     "fieldId": 1,
@@ -77,7 +77,7 @@ Adds planting data for a specific field in a farm.
 
 ### Add Harvest Data
 ```
-POST /api/farms/{farmId}/harvests
+POST /api/v1/farms/{farmId}/harvests
 Request Body:
 {
     "plantingId": 1,
@@ -88,7 +88,7 @@ Adds harvesting data for a specific planting.
 
 ### Generate Report
 ```
-GET /api/reports/generate
+GET /api/v1/reports/generate
 ```
 
 ---
