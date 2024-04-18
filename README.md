@@ -22,6 +22,28 @@ Represents the planting activity for a specific crop in a field during a season.
 ### Harvest
 Represents the harvested product data for a specific planting activity. Each harvest record includes the associated planting activity and the actual harvested amount.
 
+Sure, here's the entity relationship diagram with entities arranged horizontally without any connections:
+
+```
++-----------------+   +--------------+   +-----------------+   +-----------------+   +--------------------------------+   +--------------------------------+  
+|      Farm       |   |    Field     |   |    CropType     |   |      Season     |   |           Planting             |   |            Harvest             |  
++-----------------+   +--------------+   +-----------------+   +-----------------+   +--------------------------------+   +--------------------------------+  
+| id: Long        |   | id: Long     |   | id: Long        |   | id: Long        |   | id: Long                       |   | id: Long                       |  
+| name: String    |   | area: Double |   | name: String    |   | name: String    |   | field_id: Long                 |   | planting_id: Long              |  
+| location: String|   | farm_id: Long|   +-----------------+   | start_date: Date|   | season_id: Long                |   | expected_product_amount: Double|
++-----------------+   +--------------+                         | end_date: Date  |   | crop_type_id: Long             |   +--------------------------------+  
+                                                               +-----------------+   | expected_product_amount: Double|     
+                                                                                     +--------------------------------+                 
+                                                                                                                            
+```
+
+In this diagram:
+- Each entity is represented by a separate box.
+- The attributes of each entity are listed within the corresponding box.
+- Entities are arranged horizontally without any connections between them.
+
+This layout provides a clear visual representation of the entities in the Farm Management System. Let me know if you need further assistance!
+
 ## Design Considerations
 
 - **Association with Planting**: Harvesting activities are associated with the specific planting activity from which the harvest originated. This ensures a clear link between the actual harvest and the planned planting, capturing information about the field, season, and crop type.
@@ -110,10 +132,7 @@ GET /api/reports/generate
 ---
 ## Tests Coverage
 Unit tests are provided for the service layer and controller layer using JUnit 5 and Mockito. Tests cover various scenarios including success cases and error handling.
-  - **FarmServiceImplUnitTest**
     ![Farm Service Unit Test](src/main/docs/farmservice-unit-test.png)
-
-  - **FarmControllerUnitTest**
     ![Farm Controller Unit Test](src/main/docs/farmcontroller-unit-test.png)
 
 ---
