@@ -109,10 +109,41 @@ GET /api/reports/generate
 
 ---
 ## Tests Coverage
-
-The following tests classes were implemented to provide some basic tests coverage:
-
-  - FarmServiceImplUnitTest
+Unit tests are provided for the service layer and controller layer using JUnit 5 and Mockito. Tests cover various scenarios including success cases and error handling.
+  - **FarmServiceImplUnitTest**
     ![Farm Service Unit Test](src/main/docs/farmservice-unit-test.png)
-  - FarmControllerUnitTest
+
+  - **FarmControllerUnitTest**
     ![Farm Controller Unit Test](src/main/docs/farmcontroller-unit-test.png)
+
+---
+
+## Custom Exceptions
+
+The application handles the following custom exceptions:
+- `FarmNotFoundException`
+- `FieldNotFoundException`
+- `CropTypeNotFoundException`
+- `SeasonNotFoundException`
+- `FieldNotAssociatedWithFarmException`
+- `CropAlreadyPlantedException`
+- `PlantingNotFoundException`
+- `PlantingNotAssociatedWithFarmException`
+- `HarvestAmountExceedsPlantedAmountException`
+
+## Controller Advice
+
+A ControllerAdvice class (`CustomExceptionHandler`) is provided to handle custom exceptions and return appropriate error responses.
+
+## Recommendations for Improvement
+
+- **Security**: Implement authentication and authorization mechanisms to secure the endpoints.
+- **Validation**: Enhance input validation to ensure data integrity and prevent invalid requests.
+- **Logging**: Implement logging to track application events and errors for monitoring and troubleshooting.
+- **Pagination**: Implement pagination for endpoints that return large datasets to improve performance.
+- **Swagger Documentation**: Include Swagger documentation to provide a detailed description of the API endpoints.
+- **Containerization**: Dockerize the application for easier deployment and scalability.
+- **Integration Tests**: Add integration tests to verify the interactions between different layers of the application.
+- **Exception Handling**: Refine exception handling to provide more informative error messages and handle edge cases more effectively.
+
+---
