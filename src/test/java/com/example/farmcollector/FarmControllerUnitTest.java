@@ -36,7 +36,7 @@ class FarmControllerUnitTest {
         Mockito.doNothing().when(farmService).addPlantingData(any(), any());
 
         // Act & Assert
-        mockMvc.perform(post("/api/farms/1/plantings")
+        mockMvc.perform(post("/api/v1/farms/1/plantings")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{ \"fieldId\": 1, \"seasonId\": 1, \"cropTypeId\": 1, \"expectedProductAmount\": 100.0 }"))
                 .andExpect(status().isCreated());
@@ -49,7 +49,7 @@ class FarmControllerUnitTest {
         Mockito.doNothing().when(farmService).addHarvestData(any(), any());
 
         // Act & Assert
-        mockMvc.perform(post("/api/farms/1/harvests")
+        mockMvc.perform(post("/api/v1/farms/1/harvests")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{ \"plantingId\": 1, \"actualHarvestedAmount\": 80.0 }"))
                 .andExpect(status().isCreated());

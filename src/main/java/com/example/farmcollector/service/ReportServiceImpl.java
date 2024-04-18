@@ -15,9 +15,9 @@ import java.util.stream.Collectors;
 @Service
 public class ReportServiceImpl implements ReportService {
 
-    private PlantingRepository plantingRepository;
+    private final PlantingRepository plantingRepository;
 
-    private HarvestRepository harvestRepository;
+    private final HarvestRepository harvestRepository;
 
     public Map<String, Map<String, Map<String, Double>>> generateReport() {
         // Retrieve all plantings

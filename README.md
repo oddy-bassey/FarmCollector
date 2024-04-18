@@ -133,7 +133,10 @@ GET /api/reports/generate
 ## Tests Coverage
 Unit tests are provided for the service layer and controller layer using JUnit 5 and Mockito. Tests cover various scenarios including success cases and error handling.
     ![Farm Service Unit Test](src/main/docs/farmservice-unit-test.png)
+<br>
     ![Farm Controller Unit Test](src/main/docs/farmcontroller-unit-test.png)
+<br>
+    ![Farm Integration Test](src/main/docs/farm-integration-test.png)
 
 ---
 

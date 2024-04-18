@@ -37,8 +37,8 @@ class ReportControllerTest {
         when(reportService.generateReport()).thenReturn(reportData);
 
         // Act & Assert
-        mockMvc.perform(get("/api/reports/generate")
-                        .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/v1/reports/generate")
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 }
